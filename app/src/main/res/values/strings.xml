@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">WhoPays</string>
+    <string name="name">Name</string>
+    <string name="e_mail">\"E-Mail\"</string>
+    <string name="email_input"> </string>
+    <string name="button_login">Login</string>
+    <string name="button_create_user">Nutzer anlegen</string>
+    <string name="nameOrEmail">Name / E-Mail</string>
+    <string name="pin">PIN</string>
+    <string name="inputNameOrEmail">Name oder E-Mail des Accounts</string>
 </resources>
