@@ -16,6 +16,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled = true
     }
 
     buildTypes {
@@ -48,4 +49,5 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
     implementation(platform("com.google.firebase:firebase-bom:29.0.1"))
     implementation("com.google.firebase:firebase-analytics-ktx")
+    implementation("com.firebaseui:firebase-ui-auth:7.2.0")
 }

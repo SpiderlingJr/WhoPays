@@ -7,10 +7,10 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 
-class MainActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_home)
 
         // Hide Title in Action bar
         val actionBar = getSupportActionBar()
@@ -20,17 +20,12 @@ class MainActivity : AppCompatActivity() {
 
 
         // Button event handlers
-        val btn_register = findViewById(R.id.button_register2) as Button
-        val btn_login = findViewById(R.id.button_login) as Button
+        val btn_logout = findViewById(R.id.button_logout) as Button
 
-        btn_register.setOnClickListener {
-            val showRegisterScreen = Intent(this@MainActivity, RegisterActivity::class.java)
+        btn_logout.setOnClickListener {
+            val showRegisterScreen = Intent(this@HomeActivity, MainActivity::class.java)
             startActivity(showRegisterScreen)
             //Toast.makeText(this@MainActivity, "You clicked me.", Toast.LENGTH_SHORT).show()
-        }
-        btn_login.setOnClickListener {
-            val showHomeScreen = Intent(this@MainActivity, HomeActivity::class.java)
-            startActivity(showHomeScreen)
         }
 
 

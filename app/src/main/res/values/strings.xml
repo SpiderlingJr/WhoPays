@@ -1,11 +1,14 @@
 <resources>
     <string name="app_name">WhoPays</string>
     <string name="name">Name</string>
-    <string name="e_mail">\"E-Mail\"</string>
-    <string name="email_input"> </string>
+    <string name="e_mail">E-Mail</string>
     <string name="button_login">Login</string>
     <string name="button_create_user">Nutzer anlegen</string>
     <string name="nameOrEmail">Name / E-Mail</string>
     <string name="pin">PIN</string>
-    <string name="inputNameOrEmail">Name oder E-Mail des Accounts</string>
+    <string name="head_whopays">WhoPays</string>
+    <string name="pin_wiederholen">PIN wiederholen</string>
+    <string name="register">Registrieren</string>
+    <string name="neu_hier">Neu hier?</string>
+    <string name="btn_logout">Logout</string>
 </resources>
