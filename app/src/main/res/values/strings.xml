@@ -11,4 +11,13 @@
     <string name="register">Registrieren</string>
     <string name="neu_hier">Neu hier?</string>
     <string name="btn_logout">Logout</string>
+    <string name="setUserError">Name eingeben!</string>
+    <string name="setEmailError">E-Mail eingeben!</string>
+    <string name="setPwdError">PIN eingeben!</string>
+    <string name="setPwdConfirmError">PIN wiederholen!</string>
+    <string name="setPwdNotMatchingError">PINs stimmen nicht überein</string>
+    <string name="HelloUser">"Hello, %1$s"</string>
+    <string name="devuser" translatable="false">christopher.brinker@web.de</string>
+    <string name="devpwd" translatable="false">111111</string>
+
 </resources>

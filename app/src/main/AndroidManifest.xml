@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WhoPays">
         <activity
-            android:name=".MainActivity"
+            android:name=".PayOverviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".WelcomeLoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,12 +23,11 @@
         </activity>
         <activity
             android:name=".HomeActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".RegisterActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity"/>
-
+            android:parentActivityName=".WelcomeLoginActivity" />
     </application>
 
 </manifest>

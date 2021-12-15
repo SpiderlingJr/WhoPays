@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     android:clipToPadding="true"
     android:textAlignment="center"
-    tools:context=".MainActivity">
+    tools:context=".WelcomeLoginActivity">
 
     <Button
-        android:id="@+id/button_login"
+        android:id="@+id/button_register"
         android:layout_width="0dp"
         android:layout_height="48dp"
         android:layout_marginStart="16dp"
@@ -112,7 +112,7 @@
         android:layout_marginTop="16dp"
         android:text="@string/neu_hier"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_login" />
+        app:layout_constraintTop_toBottomOf="@+id/button_register" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
