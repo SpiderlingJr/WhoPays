@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/expensesFragment">
+
+    <fragment
+        android:id="@+id/expensesFragment"
+        android:name="scom.example.whopays.ExpensesFragment"
+        android:label="fragment_expenses"
+        tools:layout="@layout/fragment_expenses" >
+        <action
+            android:id="@+id/action_expensesFragment_to_partnerViewFragment"
+            app:destination="@id/partnerViewFragment"
+            app:popUpTo="@id/expensesFragment" />
+        <action
+            android:id="@+id/action_expensesFragment_to_newExpenseFragment"
+            app:destination="@id/newExpenseFragment"
+            app:popUpTo="@id/expensesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/partnerViewFragment"
+        android:name="scom.example.whopays.PartnerViewFragment"
+        android:label="fragment_partner_view"
+        tools:layout="@layout/fragment_partner_view" >
+        <action
+            android:id="@+id/action_partnerViewFragment_to_invitePartnerFragment"
+            app:destination="@id/invitePartnerFragment"
+            app:popUpTo="@id/partnerViewFragment" />
+        <action
+            android:id="@+id/action_partnerViewFragment_to_pendingInvites"
+            app:destination="@id/pendingInvitesFragment"
+            app:popUpTo="@id/partnerViewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/invitePartnerFragment"
+        android:name="scom.example.whopays.InvitePartnerFragment"
+        android:label="fragment_invite_partner"
+        tools:layout="@layout/fragment_invite_partner" />
+    <fragment
+        android:id="@+id/pendingInvitesFragment"
+        android:name="scom.example.whopays.PendingInvites"
+        android:label="fragment_pending_invites"
+        tools:layout="@layout/fragment_pending_invites" />
+    <fragment
+        android:id="@+id/newExpenseFragment"
+        android:name="scom.example.whopays.NewExpenseFragment"
+        android:label="fragment_new_expense"
+        tools:layout="@layout/fragment_new_expense" />
+</navigation>

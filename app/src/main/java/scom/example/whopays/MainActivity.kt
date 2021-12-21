@@ -1,5 +1,30 @@
 package scom.example.whopays
 
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import scom.example.whopays.databinding.ActivityMainBinding
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val binding = DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        val accountNavController = this.findNavController(R.id.mainNavHostFragment)
+        NavigationUI.setupActionBarWithNavController(this, accountNavController)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val accountNavController = this.findNavController(R.id.mainNavHostFragment)
+        return accountNavController.navigateUp()
+    }
+}
+
+/* OLD HOME ACTIVITY
+
+package scom.example.whopays
+
 import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -88,3 +113,7 @@ class HomeActivity : AppCompatActivity() {
 
 
 
+
+
+
+ */
