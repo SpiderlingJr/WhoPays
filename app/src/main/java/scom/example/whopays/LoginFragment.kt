@@ -1,8 +1,10 @@
 package scom.example.whopays
 
 import android.app.Activity
+import android.app.ActivityOptions
 import android.content.ContentValues
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -12,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
@@ -26,21 +29,21 @@ class LoginFragment : Fragment() {
     private val db = Firebase.firestore
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         auth = Firebase.auth
 
         val binding: FragmentLoginBinding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_login, container, false
+                inflater, R.layout.fragment_login, container, false
         )
         // Inflate the layout for this fragment
         binding.buttonLogin.setOnClickListener {
             signIn()
         }
         binding.buttonRegister.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_registerFragment)
+                Navigation.createNavigateOnClickListener(R.id.action_loginFragment_to_registerFragment)
         )
         return binding.root
     }
@@ -66,37 +69,38 @@ class LoginFragment : Fragment() {
         }
 
         auth.signInWithEmailAndPassword(email.text.toString(), password.text.toString())
-            .addOnCompleteListener(activity as Activity) { task ->
-                if (task.isSuccessful) {
-                    Log.d(ContentValues.TAG, "signInWithEmail:success")
-                    getUsername(auth.currentUser!!)
-                } else {
-                    Log.w(ContentValues.TAG, "signInWithEmail:failure", task.exception)
-                    Toast.makeText(
-                        activity, "Authentication failed.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                .addOnCompleteListener(activity as Activity) { task ->
+                    if (task.isSuccessful) {
+                        Log.d(ContentValues.TAG, "signInWithEmail:success")
+                        getUsername(auth.currentUser!!)
+                    } else {
+                        Log.w(ContentValues.TAG, "signInWithEmail:failure", task.exception)
+                        Toast.makeText(
+                                activity, "Authentication failed.",
+                                Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
-            }
 
     }
 
     private fun getUsername(user: FirebaseUser) {
-        val docRef = db.collection("Nutzer")
-            .document(user.uid)
-            .get()
-            .addOnSuccessListener { result ->
-                val uname = result["Name"] as String
-                startMainActivity(uname)
-            }
-            .addOnFailureListener { exception ->
-                Log.d("TAG", "Error getting documents: ", exception)
-            }
+        val docRef = db.collection("Nutzer").document(user.uid)
+        docRef.get()
+                .addOnSuccessListener { result ->
+                    val uname = result["Name"] as String
+                    startMainActivity(uname)
+                }
+                .addOnFailureListener { exception ->
+                    Log.d("TAG", "Error getting documents: ", exception)
+                }
     }
 
-    private fun startMainActivity(user:String) {
+    private fun startMainActivity(user: String) {
         val startMainActivity = Intent(activity, MainActivity::class.java)
         startMainActivity.putExtra("Username", user)
-        startActivity(startMainActivity)
+        startActivity(
+                startMainActivity
+        )
     }
 }

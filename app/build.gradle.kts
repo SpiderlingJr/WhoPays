@@ -5,8 +5,6 @@ plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
     kotlin("android")
-    //kotlin("kapt") version "1.6.10"
-    //id("kotlin-android")
 }
 
 android {
@@ -15,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "scom.example.whopays"
-        minSdk = 19
+        minSdk = 21
         targetSdk = 29
         versionCode = 1
         versionName = "1.0"
