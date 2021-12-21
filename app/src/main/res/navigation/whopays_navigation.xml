@@ -13,11 +13,19 @@
         <action
             android:id="@+id/action_expensesFragment_to_partnerViewFragment"
             app:destination="@id/partnerViewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/expensesFragment" />
         <action
             android:id="@+id/action_expensesFragment_to_newExpenseFragment"
             app:destination="@id/newExpenseFragment"
-            app:popUpTo="@id/expensesFragment" />
+            app:popUpTo="@id/expensesFragment"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/slide_up"
+            app:popExitAnim="@anim/slide_down"/>
     </fragment>
     <fragment
         android:id="@+id/partnerViewFragment"
@@ -27,11 +35,19 @@
         <action
             android:id="@+id/action_partnerViewFragment_to_invitePartnerFragment"
             app:destination="@id/invitePartnerFragment"
-            app:popUpTo="@id/partnerViewFragment" />
+            app:popUpTo="@id/partnerViewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <action
             android:id="@+id/action_partnerViewFragment_to_pendingInvites"
             app:destination="@id/pendingInvitesFragment"
-            app:popUpTo="@id/partnerViewFragment" />
+            app:popUpTo="@id/partnerViewFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/invitePartnerFragment"

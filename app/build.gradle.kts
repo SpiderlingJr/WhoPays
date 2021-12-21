@@ -5,8 +5,6 @@ plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
     kotlin("android")
-    //kotlin("kapt") version "1.6.10"
-    //id("kotlin-android")
 }
 
 android {
@@ -15,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "scom.example.whopays"
-        minSdk = 19
+        minSdk = 21
         targetSdk = 29
         versionCode = 1
         versionName = "1.0"
@@ -68,7 +66,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     // Everything Firebase
-    implementation(platform("com.google.firebase:firebase-bom:29.0.1"))
+    implementation(platform("com.google.firebase:firebase-bom:29.0.3"))
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
