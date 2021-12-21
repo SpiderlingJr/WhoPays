@@ -1,5 +1,28 @@
 package scom.example.whopays
 
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import scom.example.whopays.databinding.FragmentRegisterBinding
+
+class RegisterFragment : Fragment() {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val binding = DataBindingUtil.inflate<FragmentRegisterBinding>(
+            inflater, R.layout.fragment_register, container, false
+        )
+        return binding.root
+    }
+}
+
+/* OLD REGISTER ACTIVITY
+package scom.example.whopays
+
 import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -20,7 +43,7 @@ class RegisterActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
         // Hide Title in Action bar
-        val btn_register = findViewById(R.id.button_register) as Button
+        val btn_register = findViewById(R.id.button_login) as Button
         btn_register.setOnClickListener {
             val name = findViewById<EditText>(R.id.editTextPersonName)
             val email = findViewById<EditText>(R.id.editTextEmail)
@@ -73,3 +96,4 @@ class RegisterActivity : AppCompatActivity() {
             }
     }
 }
+ */

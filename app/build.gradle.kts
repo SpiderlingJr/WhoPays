@@ -1,8 +1,12 @@
+import org.jetbrains.kotlin.base.kapt3.KaptOptions
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.application")
     id("com.google.gms.google-services")
     kotlin("android")
-    id("kotlin-android")
+    //kotlin("kapt") version "1.6.10"
+    //id("kotlin-android")
 }
 
 android {
@@ -29,6 +33,10 @@ android {
             )
         }
     }
+    buildFeatures {
+        dataBinding = true
+        viewBinding = true
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -41,18 +49,30 @@ android {
 }
 
 dependencies {
+    implementation("com.android.support:support-annotations:28.0.0")
+    val nav_version = "2.3.5"
+
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.6.0")
     implementation("androidx.core:core-ktx:1.7.0")
+
     implementation("androidx.appcompat:appcompat:1.4.0")
-    implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.2")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     testImplementation("junit:junit:4.+")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
     implementation("com.google.android.gms:play-services-location:19.0.0")
+
+    // Navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
     // Everything Firebase
     implementation(platform("com.google.firebase:firebase-bom:29.0.1"))
     implementation("com.google.firebase:firebase-auth-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
     implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.android.material:material:1.4.0")
+
 }
+

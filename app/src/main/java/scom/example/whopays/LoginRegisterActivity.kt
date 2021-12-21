@@ -1,7 +1,39 @@
 package scom.example.whopays
 
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import scom.example.whopays.databinding.ActivityLoginRegisterBinding
+
+class LoginRegisterActivity : AppCompatActivity() {
+    private lateinit var auth: FirebaseAuth
+
+    private lateinit var binding: ActivityLoginRegisterBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        auth = Firebase.auth
+
+        val binding = DataBindingUtil.setContentView<ActivityLoginRegisterBinding>(this, R.layout.activity_login_register)
+        val accountNavController = this.findNavController(R.id.accountNavHostFragment)
+        NavigationUI.setupActionBarWithNavController(this, accountNavController)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val accountNavController = this.findNavController(R.id.accountNavHostFragment)
+        return accountNavController.navigateUp()
+    }
+}
+
+/* OLD WELCOME LOGIN ACTIVITIY
+
+package scom.example.whopays
+
 import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,7 +45,6 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class WelcomeLoginActivity : AppCompatActivity() {
@@ -21,7 +52,7 @@ class WelcomeLoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.fragment_login)
 
         auth = Firebase.auth
 
@@ -32,8 +63,8 @@ class WelcomeLoginActivity : AppCompatActivity() {
         }
 
         // Button event handlers
-        val btn_register = findViewById(R.id.button_register2) as Button
-        val btn_login = findViewById(R.id.button_register) as Button
+        val btn_register = findViewById(R.id.buttonRegister) as Button
+        val btn_login = findViewById(R.id.button_login) as Button
 
 
         // TODO REMOVE THIS \/
@@ -116,3 +147,4 @@ class WelcomeLoginActivity : AppCompatActivity() {
     }
 
 }
+ */
