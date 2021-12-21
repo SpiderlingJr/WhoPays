@@ -11,13 +11,9 @@ import com.google.firebase.ktx.Firebase
 import scom.example.whopays.databinding.ActivityLoginRegisterBinding
 
 class LoginRegisterActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
-
     private lateinit var binding: ActivityLoginRegisterBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        auth = Firebase.auth
-
         val binding = DataBindingUtil.setContentView<ActivityLoginRegisterBinding>(this, R.layout.activity_login_register)
         val accountNavController = this.findNavController(R.id.accountNavHostFragment)
         NavigationUI.setupActionBarWithNavController(this, accountNavController)

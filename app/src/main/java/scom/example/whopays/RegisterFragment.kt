@@ -1,14 +1,30 @@
 package scom.example.whopays
 
+import android.app.Activity
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.SetOptions
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import scom.example.whopays.databinding.FragmentRegisterBinding
 
 class RegisterFragment : Fragment() {
+    private lateinit var auth: FirebaseAuth
+    private val db = Firebase.firestore
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -16,84 +32,89 @@ class RegisterFragment : Fragment() {
         val binding = DataBindingUtil.inflate<FragmentRegisterBinding>(
             inflater, R.layout.fragment_register, container, false
         )
-        return binding.root
-    }
-}
-
-/* OLD REGISTER ACTIVITY
-package scom.example.whopays
-
-import android.content.ContentValues.TAG
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.text.TextUtils
-import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
-import com.google.firebase.auth.FirebaseAuth
-
-class RegisterActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
-
+        binding.buttonCreateAccount.setOnClickListener {
+            if (checkRegisterInputs()) {
+                val name =
+                    requireView().findViewById<EditText>(R.id.editTextPersonName).text.toString()
+                val email = requireView().findViewById<EditText>(R.id.editTextEmail).text.toString()
+                val pwd = requireView().findViewById<EditText>(R.id.editTextPin).text.toString()
+                createAccount(name, email, pwd)
+            }
+        }
         auth = FirebaseAuth.getInstance()
 
-        // Hide Title in Action bar
-        val btn_register = findViewById(R.id.button_login) as Button
-        btn_register.setOnClickListener {
-            val name = findViewById<EditText>(R.id.editTextPersonName)
-            val email = findViewById<EditText>(R.id.editTextEmail)
-            val pin = findViewById<EditText>(R.id.editTextPin)
-            val confirmPin = findViewById<EditText>(R.id.editTextConfirmPin)
-
-            if (TextUtils.isEmpty(name.text.toString())) {
-                name.setError(resources.getString(R.string.setUserError))
-                return@setOnClickListener
-            }
-            if (TextUtils.isEmpty(email.text.toString())) {
-                email.setError(resources.getString(R.string.setEmailError))
-                return@setOnClickListener
-            }
-            if (TextUtils.isEmpty(pin.text.toString())) {
-                pin.setError(resources.getString(R.string.setPwdError))
-                return@setOnClickListener
-            }
-            if (TextUtils.isEmpty(confirmPin.text.toString())) {
-                confirmPin.setError(resources.getString(R.string.setPwdConfirmError))
-                return@setOnClickListener
-            }
-            if (!TextUtils.equals(pin.text.toString(), confirmPin.text.toString())) {
-                pin.setError(resources.getString(R.string.setPwdNotMatchingError))
-                confirmPin.setError(resources.getString(R.string.setPwdNotMatchingError))
-                return@setOnClickListener
-            }
-            createAccount(
-                email = email.text.toString(),
-                password = pin.text.toString()
-            )
-        }
+        return binding.root
     }
 
-    private fun createAccount(email: String, password: String) {
+    //override fun onViewCreated(view: View, savedInstanceState: Bundle?) {}
+
+    private fun checkRegisterInputs(): Boolean {
+        val name = requireView().findViewById<EditText>(R.id.editTextPersonName)
+        val email = requireView().findViewById<EditText>(R.id.editTextEmail)
+        val pin = requireView().findViewById<EditText>(R.id.editTextPin)
+        val confirmPin = requireView().findViewById<EditText>(R.id.editTextConfirmPin)
+
+        var validInput = true
+        if (TextUtils.isEmpty(name.text.toString())) {
+            name.setError(resources.getString(R.string.setUserError))
+            validInput = false
+        }
+        if (TextUtils.isEmpty(email.text.toString())) {
+            email.setError(resources.getString(R.string.setEmailError))
+            validInput = false
+        }
+        if (TextUtils.isEmpty(pin.text.toString())) {
+            pin.setError(resources.getString(R.string.setPwdError))
+            validInput = false
+        }
+        if (TextUtils.isEmpty(confirmPin.text.toString())) {
+            confirmPin.setError(resources.getString(R.string.setPwdConfirmError))
+            validInput = false
+        }
+        if (!TextUtils.equals(pin.text.toString(), confirmPin.text.toString())) {
+            pin.setError(resources.getString(R.string.setPwdNotMatchingError))
+            confirmPin.setError(resources.getString(R.string.setPwdNotMatchingError))
+            validInput = false
+        }
+        return validInput
+    }
+
+    private fun createAccount(name: String, email: String, password: String) {
         auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
+            .addOnCompleteListener(activity as Activity) { task ->
                 if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "createUserWithEmail:success")
-                    val user = auth.currentUser
-                    //updateUI(user)
+                    val uid = auth.currentUser!!.uid
+                    putNewUserInFirestore(uid, name)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(baseContext, "Authentication failed.",
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        activity, "Authentication failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                     //updateUI(null)
                 }
             }
     }
+
+    private fun putNewUserInFirestore(uid: String, name: String) {
+        /** Stores the new User's Name and UID in Firestore */
+        val user = hashMapOf(
+            "Name" to name
+        )
+        val docRef = db.collection("Nutzer").document(uid)
+        docRef.set(user)
+        .addOnSuccessListener {
+            Log.d(tag, "SUCCESS IN SUCCESS")
+        }
+        .addOnCompleteListener {
+            Toast.makeText(
+                activity, "Nutzer erstellt!",
+                Toast.LENGTH_SHORT
+            ).show()
+            findNavController().navigateUp()
+        }
+
+
+    }
 }
- */
