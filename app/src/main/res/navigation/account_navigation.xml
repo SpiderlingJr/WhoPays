@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="scom.example.whopays.LoginFragment"
+        android:name="scom.example.whopays.loginregister.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/registerFragment"
-        android:name="scom.example.whopays.RegisterFragment"
+        android:name="scom.example.whopays.loginregister.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
     <include app:graph="@navigation/whopays_navigation" />

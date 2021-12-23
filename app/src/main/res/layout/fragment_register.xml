@@ -7,7 +7,7 @@
     <data>
         <variable
             name="register"
-            type="scom.example.whopays.RegisterFragment" />
+            type="scom.example.whopays.loginregister.RegisterFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

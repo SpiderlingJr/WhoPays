@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/expensesFragment"
-        android:name="scom.example.whopays.ExpensesFragment"
+        android:name="scom.example.whopays.expenses.ExpensesFragment"
         android:label="fragment_expenses"
         tools:layout="@layout/fragment_expenses" >
         <action
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/partnerViewFragment"
-        android:name="scom.example.whopays.PartnerViewFragment"
+        android:name="scom.example.whopays.expenses.PartnerViewFragment"
         android:label="fragment_partner_view"
         tools:layout="@layout/fragment_partner_view" >
         <action
@@ -51,17 +51,17 @@
     </fragment>
     <fragment
         android:id="@+id/invitePartnerFragment"
-        android:name="scom.example.whopays.InvitePartnerFragment"
+        android:name="scom.example.whopays.expenses.InvitePartnerFragment"
         android:label="fragment_invite_partner"
         tools:layout="@layout/fragment_invite_partner" />
     <fragment
         android:id="@+id/pendingInvitesFragment"
-        android:name="scom.example.whopays.PendingInvites"
+        android:name="scom.example.whopays.expenses.PendingInvites"
         android:label="fragment_pending_invites"
         tools:layout="@layout/fragment_pending_invites" />
     <fragment
         android:id="@+id/newExpenseFragment"
-        android:name="scom.example.whopays.NewExpenseFragment"
+        android:name="scom.example.whopays.expenses.NewExpenseFragment"
         android:label="fragment_new_expense"
         tools:layout="@layout/fragment_new_expense" />
 </navigation>
