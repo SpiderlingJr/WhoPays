@@ -38,7 +38,7 @@ class ExpensesFragment : Fragment() {
         val data = ArrayList<Expense>()
 
         for (i in 1..10){
-            data.add(Expense(i.toFloat()))
+            data.add(Expense(amount=i.toFloat()))
         }
         val adapter = ExpensesAdapter(data)
 
