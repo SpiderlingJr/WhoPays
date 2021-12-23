@@ -1,13 +1,11 @@
-package scom.example.whopays
+package scom.example.whopays.loginregister
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import scom.example.whopays.R
 import scom.example.whopays.databinding.ActivityLoginRegisterBinding
 
 class LoginRegisterActivity : AppCompatActivity() {

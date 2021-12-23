@@ -1,10 +1,8 @@
-package scom.example.whopays
+package scom.example.whopays.loginregister
 
 import android.app.Activity
-import android.app.ActivityOptions
 import android.content.ContentValues
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Log
@@ -14,7 +12,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
 import com.google.firebase.auth.FirebaseAuth
@@ -22,6 +19,8 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import scom.example.whopays.expenses.MainActivity
+import scom.example.whopays.R
 import scom.example.whopays.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {

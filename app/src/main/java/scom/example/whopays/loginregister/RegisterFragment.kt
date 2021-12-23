@@ -1,4 +1,4 @@
-package scom.example.whopays
+package scom.example.whopays.loginregister
 
 import android.app.Activity
 import android.content.ContentValues.TAG
@@ -12,12 +12,11 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.SetOptions
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import scom.example.whopays.R
 import scom.example.whopays.databinding.FragmentRegisterBinding
 
 class RegisterFragment : Fragment() {

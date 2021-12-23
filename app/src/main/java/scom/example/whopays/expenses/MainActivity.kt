@@ -1,11 +1,11 @@
-package scom.example.whopays
+package scom.example.whopays.expenses
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
-import com.google.firebase.auth.FirebaseAuth
+import scom.example.whopays.R
 import scom.example.whopays.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

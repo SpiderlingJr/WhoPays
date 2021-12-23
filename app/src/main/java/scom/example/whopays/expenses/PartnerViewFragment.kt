@@ -1,4 +1,4 @@
-package scom.example.whopays
+package scom.example.whopays.expenses
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.Navigation
+import scom.example.whopays.R
 import scom.example.whopays.databinding.FragmentPartnerViewBinding
 
 class PartnerViewFragment : Fragment() {
